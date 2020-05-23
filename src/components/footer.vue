@@ -4,10 +4,12 @@
       <div class="footer-bg-overlay">
         <div class="footer-wrap">
           <div class="top">
-            <img
-              src="./../assets/images/moebius-logo-white.svg"
-              alt="moebius-logo-white"
-            />
+            <a href="#">
+              <img
+                src="./../assets/images/moebius-logo-white.svg"
+                alt="moebius-logo-white"
+              />
+            </a>
             <ul>
               <li><a href="#">home</a></li>
               <li><a href="#">service</a></li>
@@ -97,8 +99,12 @@ export default {
       margin: 0 auto;
 
       .top {
-        img {
-          float: left;
+        a {
+          display: inline-block;
+
+          img {
+            float: left;
+          }
         }
         ul {
           float: right;
@@ -117,6 +123,10 @@ export default {
               letter-spacing: 1.31px;
               color: #fff;
               text-transform: uppercase;
+
+              &:hover {
+                color: #220f3e;
+              }
             }
           }
         }
@@ -166,6 +176,12 @@ export default {
 
               a {
                 display: inline-block;
+
+                &:hover {
+                  img {
+                    width: 22px;
+                  }
+                }
               }
             }
           }

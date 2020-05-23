@@ -75,6 +75,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../assets/css/breakpoints.scss";
+
 .header {
   background: url(./../assets/images/header-bg-img.png) no-repeat center;
   background-size: cover;
@@ -119,6 +121,10 @@ export default {
         padding: 14px 35px;
         background-color: #ff9e08;
         color: #fff;
+
+        &:hover {
+          color: #220f3e;
+        }
       }
 
       &::after {
@@ -200,6 +206,7 @@ export default {
     }
 
     .icons-bar {
+      display: none;
       width: 100%;
       border-radius: 8px;
       box-shadow: 14px 20px 54px 0 rgba(133, 143, 175, 0.1);
@@ -225,6 +232,10 @@ export default {
             display: inline-block;
           }
         }
+      }
+
+      @include lg {
+        display: block;
       }
     }
   }

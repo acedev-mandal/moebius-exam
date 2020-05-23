@@ -1,6 +1,11 @@
 <template>
   <div>
     <div class="main">
+      <modal name="new-sub"> thanks for the subscribe, {{ emailsub }}! </modal>
+      <modal name="show-message">
+        Hello {{ name }} with email address {{ email }}! You sent us the
+        following message: {{ message }}</modal
+      >
       <div class="main-wrap-1">
         <div class="content-service fine-line">
           <div class="head-grp">
@@ -10,7 +15,7 @@
             </div>
           </div>
           <div class="thumb-grid">
-            <div class="thumbs">
+            <a href="#" class="thumbs">
               <img
                 src="./../assets/images/001-interface.svg"
                 alt="001-interface"
@@ -21,8 +26,8 @@
                 customized Enterprise Software Solution based on your needs and
                 goals.
               </p>
-            </div>
-            <div class="thumbs">
+            </a>
+            <a href="#" class="thumbs">
               <img
                 src="./../assets/images/002-smartphone.svg"
                 alt="002-smartphone"
@@ -32,8 +37,8 @@
                 Our development team helps you to achieve your goals by
                 designing & building custom mobile apps.
               </p>
-            </div>
-            <div class="thumbs">
+            </a>
+            <a href="#" class="thumbs">
               <img
                 src="./../assets/images/003-computer.svg"
                 alt="003-computer"
@@ -43,15 +48,15 @@
                 We build intelligent digital solutions & shopping experiences to
                 meet ambitious sales goals for e-commerce businesses.
               </p>
-            </div>
-            <div class="thumbs">
+            </a>
+            <a href="#" class="thumbs">
               <img src="./../assets/images/004-tablet.svg" alt="004-tablet" />
               <div class="title">Web Development</div>
               <p class="desc">
                 We build web apps or work together with your development team to
                 create a fully responsive website that stands out.
               </p>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -77,16 +82,23 @@
             <div class="input-fields">
               <form action="localhost">
                 <label for="name">Your name</label>
-                <input type="text" id="name" name="name" value="Robert Stark" />
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value="Robert Stark"
+                  v-model="name"
+                />
                 <label for="email">Your Email</label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   placeholder="stark@robert.com"
+                  v-model="email"
                 />
                 <label for="message">Your Message</label>
-                <textarea id="message" name="message">
+                <textarea id="message" name="message" v-model="message">
                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. : Not active</textarea
                 >
                 <vue-recaptcha
@@ -97,6 +109,7 @@
                   type="submit"
                   class="form-contact-us"
                   value="CONTACT US"
+                  @click="showMessage"
                 />
               </form>
             </div>
@@ -200,8 +213,14 @@
                 id="email-sub"
                 name="email-sub"
                 placeholder="stark@robert.com"
+                v-model="emailsub"
               />
-              <input type="submit" class="subscribe-btn" value="subscribe" />
+              <input
+                type="submit"
+                class="subscribe-btn"
+                value="subscribe"
+                @click="showSub"
+              />
             </form>
           </div>
         </div>
@@ -218,21 +237,57 @@ export default {
   components: {
     VueRecaptcha,
   },
+  data() {
+    return {
+      name: "Robert Stark",
+      email: "stark@robert.com",
+      message:
+        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. : Not active",
+      emailsub: "",
+    };
+  },
+  methods: {
+    showSub(event) {
+      if (event) {
+        event.preventDefault();
+      }
+      this.$modal.show("new-sub");
+    },
+    hideSub() {
+      this.$modal.hide("new-sub");
+    },
+    showMessage(event) {
+      if (event) {
+        event.preventDefault();
+      }
+      this.$modal.show("show-message");
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+@import "./../assets/css/breakpoints.scss";
+
 .main {
   padding-bottom: 80px;
   .main-wrap-1 {
-    background: url(./../assets/images/shutterstock-741473680.png) no-repeat;
-    background-size: 43%;
-    background-position-y: 222px;
+    background: none;
+
+    @include lg {
+      background: url(./../assets/images/shutterstock-741473680.png) no-repeat;
+      background-size: 43%;
+      background-position-y: 222px;
+    }
 
     .content-service {
       width: 77%;
       margin: 0 auto;
-      margin-top: 133px;
+      margin-top: 80px;
+
+      @include lg {
+        margin-top: 133px;
+      }
 
       .head-grp {
         text-align: center;
@@ -254,11 +309,14 @@ export default {
         }
       }
       .thumb-grid {
-        float: right;
-        width: 59%;
+        @include lg {
+          float: right;
+          width: 59%;
+        }
+
         .thumbs {
           text-align: left;
-          width: 40%;
+          width: 38%;
           height: 244px;
           border-radius: 8px;
           border: solid 1px rgba(133, 143, 175, 0.2);
@@ -266,6 +324,10 @@ export default {
           padding: 19px;
           float: left;
           margin-left: 20px;
+
+          @include lg {
+            width: 40%;
+          }
 
           .title {
             font-weight: 500;
@@ -275,6 +337,11 @@ export default {
             margin-bottom: 16px;
           }
 
+          &:hover {
+            .title {
+              color: #ff9e08;
+            }
+          }
           .desc {
             font-weight: 400;
             font-size: 16px;
@@ -340,11 +407,22 @@ export default {
           border-radius: 8px;
           box-shadow: 14px 20px 54px 0 rgba(133, 143, 175, 0.1);
           background-color: #ffffff;
-          width: 80%;
+          width: 96%;
           padding-top: 60px;
-          padding-bottom: 90px;
-          padding-left: 160px;
-          margin-left: -160px;
+          padding-bottom: 60px;
+          padding-left: 30px;
+          margin-bottom: 24px;
+
+          @include lg {
+            border-radius: 8px;
+            box-shadow: 14px 20px 54px 0 rgba(133, 143, 175, 0.1);
+            background-color: #ffffff;
+            width: 80%;
+            padding-top: 60px;
+            padding-bottom: 90px;
+            padding-left: 160px;
+            margin-left: -160px;
+          }
 
           form {
             label {
@@ -431,10 +509,25 @@ export default {
         }
 
         .map-holder {
-          float: right;
-          position: absolute;
-          top: 30px;
-          right: 0;
+          width: 100%;
+          margin: 0 auto;
+
+          iframe {
+            width: 100%;
+          }
+
+          @include lg {
+            float: right;
+            position: absolute;
+            top: 30px;
+            right: 0;
+            width: auto;
+            margin: 0;
+
+            iframe {
+              width: 500px;
+            }
+          }
         }
 
         &::after {
@@ -480,10 +573,22 @@ export default {
         .second-row {
           .thumbnail {
             display: inline-block;
-            width: 23%;
+            width: 98%;
             border-radius: 8px;
             border: solid 1px rgba(133, 143, 175, 0.2);
             background-color: #ffffff;
+
+            @include lg {
+              display: inline-block;
+              width: 23%;
+              border-radius: 8px;
+              border: solid 1px rgba(133, 143, 175, 0.2);
+              background-color: #ffffff;
+
+              &:hover {
+                width: 23.5%;
+              }
+            }
 
             img {
               width: 100%;
@@ -509,7 +614,21 @@ export default {
             &:first-child,
             &:nth-child(2),
             &:nth-child(3) {
-              margin-right: 25px;
+              margin-bottom: 25px;
+
+              @include lg {
+                margin-right: 25px;
+
+                &:hover {
+                  margin-right: 18px;
+                }
+              }
+            }
+
+            &:last-child:hover {
+              @include lg {
+                margin-left: -10px;
+              }
             }
           }
         }
