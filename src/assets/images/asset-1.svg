@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="66" height="49" viewBox="0 0 66 49">
+    <defs>
+        <radialGradient id="prefix__a" cx="99.321%" cy="198.525%" r="233.801%" fx="99.321%" fy="198.525%">
+            <stop offset="0%" stop-color="#FF974D"/>
+            <stop offset="100%" stop-color="#FD3886"/>
+        </radialGradient>
+        <radialGradient id="prefix__b" cx="-12.945%" cy="214.864%" r="233.801%" fx="-12.945%" fy="214.864%">
+            <stop offset="0%" stop-color="#FF974D"/>
+            <stop offset="100%" stop-color="#FD3886"/>
+        </radialGradient>
+        <radialGradient id="prefix__c" cx="100.854%" cy="51.317%" r="121.805%" fx="100.854%" fy="51.317%">
+            <stop offset="0%" stop-color="#FF974D"/>
+            <stop offset="100%" stop-color="#FD3886"/>
+        </radialGradient>
+        <radialGradient id="prefix__d" cx="-6.204%" cy="55.18%" r="112.25%" fx="-6.204%" fy="55.18%" gradientTransform="matrix(1 0 0 .99977 0 0)">
+            <stop offset="0%" stop-color="#FF974D"/>
+            <stop offset="100%" stop-color="#FD3886"/>
+        </radialGradient>
+    </defs>
+    <g fill="none" transform="translate(.575)">
+        <circle cx="22.505" cy="10.349" r="7.8" fill="url(#prefix__a)"/>
+        <circle cx="40.019" cy="7.8" r="7.8" fill="url(#prefix__b)"/>
+        <path fill="url(#prefix__c)" d="M14.972 18.153C6.703 18.153 0 24.856 0 33.124c0 8.27 6.703 14.972 14.972 14.972h14.972V33.124c0-3.97-1.578-7.779-4.385-10.586-2.808-2.808-6.616-4.385-10.587-4.385z"/>
+        <path fill="url(#prefix__d)" d="M48.458 15.604c-8.97 0-16.24 7.27-16.243 16.239v16.242h16.243c8.974 0 16.25-7.275 16.25-16.25 0-8.974-7.276-16.25-16.25-16.25v.019z"/>
+    </g>
+</svg>
